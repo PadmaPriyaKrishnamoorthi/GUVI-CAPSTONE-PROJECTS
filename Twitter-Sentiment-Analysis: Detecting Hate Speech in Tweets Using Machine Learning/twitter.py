@@ -1,4 +1,3 @@
-
 # import libraries
 import pickle
 import streamlit as slt
@@ -6,19 +5,12 @@ from streamlit_option_menu import option_menu
 
 #setting up streamlit page
 slt.set_page_config(layout="wide")
-web=option_menu(menu_title="EMOTIONAPP",
-                options=["Home","Tweet emotion analysis🤬😊"],
+web=option_menu(menu_title="EMOTIONS ANALYSIS",
+                options=["Tweet emotion analysis🤬😊"],
                 orientation="horizontal"
                 )
-if web=="Home":
-   slt.title("Twitter-Sentiment-Analysis:")
-   slt.header("Detecting Hate Speech in Tweets Using Machine Learning")
-   slt.subheader(":blue[skills:]  ●	Natural Language Processing (NLP) ●	Text Classification")
-   slt.subheader(":blue[Objective:]")
-   slt.markdown('''The objective of this task is to detect hate speech in tweets. For the sake of simplicity, 
-                we say a tweet contains hate speech if it has a racist or sexist sentiment associated with it. 
-                So, the task is to classify racist or sexist tweets from other tweets''')
-   slt.subheader(":blue[Developed-by:]  Padma priya")
+
+   
    
 if web=="Tweet emotion analysis🤬😊":
     #open the model for prediction
@@ -27,6 +19,7 @@ if web=="Tweet emotion analysis🤬😊":
     with open('vectorizer.pkl', 'rb') as vector_file:
        vector = pickle.load(vector_file)
     tweet=slt.text_input("Enter the tweet")
+    slt.image(r"C:\Users\Vishwa\Desktop\GUVI captone\twitter\2329257_bird_twitter_twitter logo_website_icon.png",width=200)
     Submit=slt.button("Predict")
     # prediction of tweet
     if Submit:
@@ -34,8 +27,8 @@ if web=="Tweet emotion analysis🤬😊":
         prediction=model_final.predict(A)
         if prediction[0]==0:
           slt.write("NOT HATE TWEET 😊")
+          slt.image(r"C:\Users\Vishwa\Desktop\GUVI captone\twitter\thumbsup.jpg")
         else:                                       
           slt.write("HATE TWEET 🤬")
-        slt.image("Untitled-6_477407.gif",width=350)
+          slt.image(r"C:\Users\Vishwa\Desktop\GUVI captone\twitter\thumbsdown.jpg",width=350)
     
-
